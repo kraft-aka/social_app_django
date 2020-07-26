@@ -1,0 +1,16 @@
+{% extends 'main_page.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    
+    <div class="mt-5">
+        <h2>Update comment</h2>
+        <form class="mt-5" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-primary mt-4">Save</button>
+        </form>
+    </div>
+
+{% endblock %}

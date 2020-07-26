@@ -1,0 +1,16 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+
+<div class="mt-5">
+    <h2>Are you sure?</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+    <a href="{% url 'posts-list' %}" class="btn btn-primary mt-3">No</a>
+</div>
+
+{% endblock %}

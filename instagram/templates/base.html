@@ -1,0 +1,24 @@
+{% extends 'main_page.html' %}
+
+
+{% block content %}
+    <h1 class="mt-4">All users</h1>
+
+    <div class="mt-5"> 
+        <form class="form-inline my-2 my-lg-0" method="GET">
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search user" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+
+    <ul class="list-group mt-4">
+        {% for u in users %}
+            <li class="list-group-item">
+                <img src="{{ u.profile.avatar.url }}" alt="" style="width: 30px; height: 30px; margin-right: 20px;">
+                <a href="{% url 'profile' u.profile.id %}">{{ u.username }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}

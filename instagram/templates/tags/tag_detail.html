@@ -1,0 +1,16 @@
+{% extends 'main_page.html' %}
+
+
+{% block content %}
+
+    <h1 class="mt-5">{{ tag.title }}</h1>
+    <a href="{% url 'tag-update' tag.id %}" class="btn btn-success">Update</a>
+
+    <ul class="list-group mt-4">
+        {% for post in posts %}
+            <li class="list-group-item"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}

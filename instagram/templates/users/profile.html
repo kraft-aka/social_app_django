@@ -1,0 +1,47 @@
+{% extends 'main_page.html' %}
+
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron mt-5">
+    <img src="{{ user_obj.profile.avatar.url }}" class="rounded" style="width: 200px; height: 200px;">
+    <h1 class="display-4 mt-3">{{ user_obj.username }}</h1>
+    <p class="lead">{{user_obj.first_name}} {{user_obj.last_name}} - {{user_obj.email}}</p>
+    <p class="lead">{{ user_obj_profile.bio }}</p>
+    <form method="POST">
+      {% csrf_token %}
+      {% if user != user_obj %}
+        {% if user.profile in user_obj_profile.followers.all %}
+          <button class="btn btn-warning" type="submit">Unfollow</button>
+        {% else %}
+          <button class="btn btn-primary" type="submit">Follow</button>
+        {% endif %}
+      {% endif %}
+    </form>
+    <hr class="my-4">
+    <h3><a href="{% url 'followers' user_obj.profile.id %}">{{ user_obj.profile.followers.count }} Followers</a></h3>
+    <h3><a href="{% url 'followings' user_obj.profile.id %}">{{ user_obj.profile.followings.count }} Followings</a></h3>
+    <hr class="my-4">
+
+    
+    <h3><a href="{% url 'user-posts' user_obj.id %}">Posts</a></h3>
+    {% if user == user_obj %}
+      <h3><a href="{% url 'my-bookmarks' %}">My bookmarks</a></h3>
+
+      <div class="mt-4">
+        <a href="{% url 'user-update' %}" class="btn btn-success">Update</a>
+      <a href="{% url 'user-delete' %}" class="btn btn-danger">Delete</a>
+      </div>
+      
+    {% endif %}
+
+
+
+  </div>
+
+
+    
+
+{% endblock %}

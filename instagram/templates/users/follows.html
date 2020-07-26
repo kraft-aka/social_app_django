@@ -1,0 +1,17 @@
+{% extends 'main_page.html' %}
+
+
+{% block content %}
+    <h1 class="mt-4">{{ header }}</h1>
+
+    <ul class="list-group mt-4">
+        {% for profile in follows %}
+            <li class="list-group-item">
+                <img src="{{ profile.avatar.url }}" alt="" style="width: 30px; height: 30px; margin-right: 20px;">
+                <a href="{% url 'profile' profile.id %}">{{ profile.user.username }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}

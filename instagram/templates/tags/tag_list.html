@@ -1,0 +1,16 @@
+{% extends 'main_page.html' %}
+
+
+{% block content %}
+
+    <a href="{% url 'tag-create' %}" class="btn btn-success mt-5">Create tag</a>
+
+    <ul class="list-group mt-4">
+        {% for tag in tags %}
+            <li class="list-group-item"><a href="{% url 'tag-detail' tag.id %}">{{ tag.title }}</a></li>
+        {% endfor %}
+    </ul>
+    
+   
+
+{% endblock %}s
